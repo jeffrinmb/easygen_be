@@ -2,6 +2,7 @@ import { NestFactory } from '@nestjs/core';
 import { NestExpressApplication } from '@nestjs/platform-express';
 import { AppModule } from './app.module';
 import { BadRequestException, ValidationPipe } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
 
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
@@ -19,7 +20,10 @@ async function bootstrap() {
     })
   );
 
-  await app.listen(process.env.PORT ?? 3000);
+  const configService = app.get(ConfigService);
+  const PORT: number = configService.get('PORT') || 3000;
+
+  await app.listen(PORT);
 }
 // eslint-disable-next-line @typescript-eslint/no-floating-promises
 bootstrap();

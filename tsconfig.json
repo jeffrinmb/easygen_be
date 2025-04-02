@@ -18,7 +18,9 @@
     "strictBindCallApply": false,
     "noFallthroughCasesInSwitch": false,
     "paths": {
-      "@src/*": ["src/*"]
+      "@src/*": ["src/*"],
+      "@auth/*": ["src/auth/*"],
+      "@interceptor/*": ["src/shared/interceptor/*"]
     }
   }
 }
