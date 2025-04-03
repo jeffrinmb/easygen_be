@@ -1,10 +1,10 @@
-import { Module } from '@nestjs/common';
+import { forwardRef, Module } from '@nestjs/common';
 import { SignupService } from './signup.service';
 import { SignupController } from './signup.controller';
 import { AuthModule } from '../auth.module';
 
 @Module({
-  imports: [AuthModule],
+  imports: [forwardRef(() => AuthModule)],
   providers: [SignupService],
   controllers: [SignupController],
 })

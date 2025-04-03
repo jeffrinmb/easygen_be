@@ -1,10 +1,10 @@
-import { Module } from '@nestjs/common';
+import { forwardRef, Module } from '@nestjs/common';
 import { SignoutController } from './signout.controller';
 import { SignoutService } from './signout.service';
 import { AuthModule } from '../auth.module';
 
 @Module({
-  imports: [AuthModule],
+  imports: [forwardRef(() => AuthModule)],
   controllers: [SignoutController],
   providers: [SignoutService],
 })

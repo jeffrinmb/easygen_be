@@ -25,6 +25,15 @@ async function bootstrap() {
     .setTitle('Easygen API')
     .setDescription('The Easygen API Documentation')
     .setVersion('1.0')
+    .addBearerAuth(
+      {
+        type: 'http',
+        scheme: 'bearer',
+        bearerFormat: 'JWT',
+        in: 'header',
+      },
+      'access-token'
+    )
     .build();
   const documentFactory = () =>
     SwaggerModule.createDocument(app, swaggerConfig);

@@ -9,7 +9,7 @@ export class UserController {
   constructor(private readonly userService: UserService) {}
 
   @UseGuards(AuthGuard)
-  @Get('profile')
+  @Get()
   async getProfile(@Req() request: Request) {
     const userId = request['user'].sub;
     return this.userService.getUserProfile(userId);
