@@ -1,5 +1,6 @@
-import { Controller, NotFoundException, Post } from '@nestjs/common';
+import { Body, Controller, Post } from '@nestjs/common';
 import { SigninService } from './signin.service';
+import { SigninDto } from '../dto/auth.dto';
 import { LoggerService } from '@src/shared/logger/logger.service';
 
 @Controller('signin')
@@ -10,9 +11,8 @@ export class SigninController {
   ) {}
 
   @Post()
-  // eslint-disable-next-line @typescript-eslint/require-await
-  async signIn() {
-    this.logger.log('TEsting the data');
-    throw new NotFoundException('TEST');
+  async signIn(@Body() signinDto: SigninDto) {
+    this.logger.log('User signin attempt', 'SigninController');
+    return this.signinService.signin(signinDto);
   }
 }

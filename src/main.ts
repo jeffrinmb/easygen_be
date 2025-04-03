@@ -3,6 +3,7 @@ import { NestExpressApplication } from '@nestjs/platform-express';
 import { AppModule } from './app.module';
 import { BadRequestException, ValidationPipe } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
+import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
@@ -19,6 +20,15 @@ async function bootstrap() {
       },
     })
   );
+
+  const swaggerConfig = new DocumentBuilder()
+    .setTitle('Easygen API')
+    .setDescription('The Easygen API Documentation')
+    .setVersion('1.0')
+    .build();
+  const documentFactory = () =>
+    SwaggerModule.createDocument(app, swaggerConfig);
+  SwaggerModule.setup('api', app, documentFactory);
 
   const configService = app.get(ConfigService);
   const PORT: number = configService.get('PORT') || 3000;
