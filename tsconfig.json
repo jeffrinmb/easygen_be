@@ -20,7 +20,8 @@
     "paths": {
       "@src/*": ["src/*"],
       "@auth/*": ["src/auth/*"],
-      "@interceptor/*": ["src/shared/interceptor/*"]
+      "@interceptor/*": ["src/shared/interceptor/*"],
+      "@logger/*": ["src/shared/logger/*"]
     }
   }
 }
